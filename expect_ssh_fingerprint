@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+set timeout 1
+set command [lindex $argv 0]
+eval spawn "touch /logs/expect.running"
+eval spawn $command
+expect {
+    "re you sure you want to continue connecting (yes/no)?" {
+       send "yes\n"
+    }
+    "Synchronizing remote metadata to local cache"
+}
+interact
