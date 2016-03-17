@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.17
+FROM sdhibit/rpi-baseimage
 
 MAINTAINER David Falk
 
@@ -6,9 +6,9 @@ RUN       apt-get update && \
           apt-get install -y wget ncftp python-pycryptopp lftp python-boto python-dev python-setuptools librsync-dev build-essential openssh-client python-lockfile python-pip && \
           rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && \
-    apt-get install -y expect postfix && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN apt-get update && \
+#    apt-get install -y expect postfix && \
+#    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN       pip install paramiko
 
@@ -18,7 +18,7 @@ RUN       wget https://code.launchpad.net/duplicity/0.7-series/0.7.05/+download/
 RUN	  cd duplicity* && \
 	  python setup.py install
 
-RUN       mkfifo /var/spool/postfix/public/pickup
+#RUN       mkfifo /var/spool/postfix/public/pickup
 
 VOLUME /data
 VOLUME /root/.gnupg/
